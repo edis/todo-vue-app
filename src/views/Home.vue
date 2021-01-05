@@ -3,24 +3,14 @@
     <h1>To-do app using Vue.js</h1>
 
     <div class="ui container">
-      <form class="ui form" @submit.prevent="addTodo()">
-        <div class="fields">
-          <div class="twelve wide field">
-            <input v-model="newTodo" type="text" name="todo-content"
-                   placeholder="What do you want to finish ..." />
-          </div>
-          <div class="four wide field">
-            <button class="ui primary button">Add Todo</button>
-          </div>
-        </div>
-      </form>
+     <TodoForm @on-create="addTodo($event)"/>
 
       <h4 class="ui dividing header" />
 
       <div class="ui segments">
         <TodoItem v-for="(todo, index) in todos" :key="index"
                   :content="todo.content" :completed="todo.completed"
-                  @on-toggle="toggleTodo(todo)" @on-delete="deleteTodo(todo)"/>
+                  @on-toggle="toggleTodo(todo)" @on-delete="deleteTodo(todo)" />
       </div>
     </div>
   </div>
@@ -28,28 +18,26 @@
 
 <script>
 import TodoItem from '@/components/TodoItem.vue';
+import TodoForm from '@/components/TodoForm.vue';
 
 export default {
   name: 'Home',
-  components: { TodoItem },
+  components: { TodoForm, TodoItem },
   data() {
     return {
       todos: [
         { content: 'Learn Vue.js', completed: true },
         { content: 'Work on Vue.js Project', completed: false },
       ],
-      newTodo: '',
     };
   },
 
   methods: {
-    addTodo() {
+    addTodo(content) {
       this.todos.push({
-        content: this.newTodo,
+        content,
         completed: false,
       });
-
-      this.newTodo = '';
     },
 
     toggleTodo(todo) {
