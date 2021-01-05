@@ -1,7 +1,6 @@
 <template>
   <div class="ui segment">
     <div class="ui checkbox">
-      <!-- TODO: combine lines into one -->
 
       <div v-if="completed === true">
         <input type="checkbox" @click='$emit("on-toggle")' checked />

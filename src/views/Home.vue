@@ -33,6 +33,7 @@ export default {
   },
 
   methods: {
+    // adds todo
     addTodo(content) {
       this.todos.push({
         content,
@@ -40,11 +41,13 @@ export default {
       });
     },
 
+    // toggle todo -> changes todo's completed property
     toggleTodo(todo) {
       // eslint-disable-next-line no-param-reassign
       todo.completed = !todo.completed;
     },
 
+    // delete todo
     deleteTodo(todo) {
       const index = this.todos.indexOf(todo);
       this.todos.splice(index, 1);

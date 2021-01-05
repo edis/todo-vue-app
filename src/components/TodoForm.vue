@@ -22,6 +22,7 @@ export default {
   },
 
   methods: {
+    // adds todo -> calls on-create event
     addTodo() {
       if (this.newTodo !== '') {
         this.$emit('on-create', this.newTodo);
